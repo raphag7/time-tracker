@@ -2,14 +2,10 @@ import time
 import os
 from datetime import datetime
 
-# Nome do arquivo que armazenará os tempos de estudo
 FILE_NAME = "registro_estudo.txt"
 
 def carregar_sessoes():
-    """
-    Carrega todas as sessões de estudo salvas no arquivo.
-    Retorna uma lista de tuplas no formato (data_hora, duracao).
-    """
+    
     sessoes = []
     if os.path.exists(FILE_NAME):
         with open(FILE_NAME, "r") as file:
@@ -22,16 +18,12 @@ def carregar_sessoes():
     return sessoes
 
 def salvar_sessao(data_hora, duracao):
-    """
-    Salva a data/hora de início e a duração da sessão no arquivo.
-    """
+
     with open(FILE_NAME, "a") as file:
         file.write(f"{data_hora} | {duracao}\n")
 
 def limpar_historico():
-    """
-    Remove todos os registros de sessões de estudo.
-    """
+    
     if os.path.exists(FILE_NAME):
         os.remove(FILE_NAME)
         print("Histórico de tempo de estudo apagado com sucesso!")
@@ -39,20 +31,14 @@ def limpar_historico():
         print("Não há histórico para apagar.")
 
 def formatar_tempo(segundos):
-    """
-    Converte segundos em uma string formatada como:
-    'X horas, Y minutos e Z segundos'.
-    """
+
     horas = int(segundos // 3600)
     minutos = int((segundos % 3600) // 60)
     segs = int(segundos % 60)
     return f"{horas} horas, {minutos} minutos e {segs} segundos"
 
 def iniciar_sessao():
-    """
-    Inicia uma sessão de estudo e registra a data/hora de início.
-    Retorna a data/hora de início e a duração da sessão em segundos.
-    """
+   
     input("Pressione ENTER para iniciar a sessão de estudo...")
     inicio = time.time()
     data_hora_inicio = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
